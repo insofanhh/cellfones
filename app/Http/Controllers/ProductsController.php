@@ -10,12 +10,12 @@ class ProductsController extends Controller
 {
     public function index(){
         $products = Products::all();
-        return view('products.index', ['products' => $products]);
+        return view('admin.products.index', ['products' => $products]);
         
     }
 
     public function create(){
-        return view('products.create');
+        return view('admin.products.create');
     }
 
     public function store(Request $request){
@@ -27,11 +27,11 @@ class ProductsController extends Controller
         ]);
 
         $newProduct = Products::create($data);
-        return redirect(route('product.index'));
+        return redirect(route('admin.products.index'));
     }
 
     public function  edit(Products $product){
-        return view('products.edit',['product'=> $product]);
+        return view('admin.products.edit',['product'=> $product]);
     }
 
     public function update(Products $product, Request $request){
@@ -43,7 +43,7 @@ class ProductsController extends Controller
         ]);
 
         $product->update($data);
-        return redirect(route('product.index'))->with('success','Product Updated Seccessfully');
+        return redirect(route('admin.products.index'))->with('success','Product Updated Seccessfully');
     }
 
     public function delete(Products $product){
